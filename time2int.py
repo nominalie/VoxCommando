@@ -36,7 +36,7 @@ def time2int(text_with_num):
             lastWordWasNum = True
             lastNum = int(units[word])
            
-        else:#evaluating and reconstructing string if this word is a number.
+        else:#evaluating and reconstructing string if this word is a number & last word was a number.
             if word in units:
                 if (lastWordWasNum & 0 < lastNum <=12):
                     everything = everything+":"+units[word]
