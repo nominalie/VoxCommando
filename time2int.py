@@ -1,6 +1,6 @@
 '''
 Simple script for VoxCommando users.
-For context, see forum thread http://voxcommando.com/forum/index.php?topic=1948 for context.
+For context, see forum thread http://voxcommando.com/forum/index.php?topic=1948
 --INFO--
 This time2int function is specifically scripted to allow you to dictate "QuickAdd" events to  
 your Google Calendar feeds from VoxCommando. There are two problems we're trying to address: 
