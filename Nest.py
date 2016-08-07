@@ -120,10 +120,8 @@ current temp)
         else:
             return "%0.1f" % temp+" Celsius" #return temp in C, rounded to one decimal place
                             
-            
-    def getDeviceInfo(self,id,var): #get other environmental info such as current thermostat mode, home away 
-
-status etc.
+    #get other environmental info such as current thermostat mode, home away status etc.
+    def getDeviceInfo(self,id,var):
     
         self.readNest()
         if not self.strucs:
@@ -165,9 +163,7 @@ status etc.
                 for key,val in self.prots.iteritems():#iterates through all protect units
                     res = d["topaz"][key][var]#retrieves battery healt for each protect unit
                     bats_state_list.append(val+": "+bat_health[res])#adds each unit name: bat_level to list.
-                vc.setResultList(List[str](bats_state_list))#returns {Match.#} list where {#M} is total num of 
-
-Protects. Each match is: "name: level".
+                vc.setResultList(List[str](bats_state_list))#returns {Match.#} list where {#M} is total num of Protects. Each match is: "name: level".
                 return
                 
             else:#checks level of specific unit (if you pass a protect id to the function)
