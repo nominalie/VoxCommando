@@ -106,7 +106,7 @@ current temp)
                 temps = ''
                 for x in (res_low,res_high):
                     temps = self.getTemp(units,x)+', '+temps
-                return "is in heat-cool mode. High and low targets are: "+temps.rstrip(', ')
+                return "in heat-cool mode. High and low targets are: "+temps.rstrip(', ')
         else:
             res = deviceInfo[var]
             return self.getTemp(units,res)
