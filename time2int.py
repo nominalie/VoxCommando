@@ -10,7 +10,6 @@ This script translates event times into digits that Google can understand.
 -----------------------------------------------------------------
 NOTE: The script expects a 12-hour clock ("7:30 pm" not "19:30").
 -----------------------------------------------------------------
----
 '''
 
 def time2int(text_with_num):
