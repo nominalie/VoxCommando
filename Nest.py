@@ -57,7 +57,7 @@ class NestVC:
                 device_id = d["device"].keys()[x]
                 device = d["shared"][device_id]["name"]
                 if device =='':
-                    device = "thermostat without a label "+str(i+1)
+                    device = "thermostat without a label "+str(x+1)
                 self.thermos[device_id] = device
             vc.savePayloadFile("Nest/thermoList.xml",Dictionary[str,str](self.thermos),True)
             
