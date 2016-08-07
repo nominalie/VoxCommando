@@ -1,10 +1,16 @@
-# Script to assist with json parsing. 
-# Generates payload xml lists for Nest devices.
-# Also returns Fahrenheit or Celsius temps based on your Nest settings.
-# This code is designed to work with VoxCommando.
-# It does not include any http authentication or Nest login functions.
-# Version date: 25-Mar-2016
-############################################################################################
+'''
+---INFO---
+Script to assist with json parsing. 
+Generates payload xml lists for Nest devices.
+ Also returns Fahrenheit or Celsius temps based on your Nest settings.
+This code is designed to work with VoxCommando.
+It does not include any http authentication or Nest login functions.
+For context and related VC command xml, see forum thread:
+http://voxcommando.com/forum/index.php?topic=2548
+---------------------------------------
+ Version date: 25-Mar-2016
+---------------------------------------
+'''
 
 from System.Collections.Generic import *
 import json
@@ -24,7 +30,9 @@ class NestVC:
     
         now = round(time.clock())
         
-        if self.d=="" or now - self.t > 180:#If Nest data was last updated over 3 mins ago, will rescan online data. Otherwise uses prev. data.
+        if self.d=="" or now - self.t > 180:#If Nest data was last updated over 3 mins ago, will rescan online data. 
+
+Otherwise uses prev. data.
             vc.triggerEvent("nestUpdate",None)
             with open("Nest/Nest_dev_status.txt","r") as nest_data:
                 read_nest = nest_data.read()
@@ -57,7 +65,7 @@ class NestVC:
                 device_id = d["device"].keys()[x]
                 device = d["shared"][device_id]["name"]
                 if device =='':
-                    device = "thermostat without a label "+str(x+1)
+                    device = "thermostat without a label"+str(x+1)
                 self.thermos[device_id] = device
             vc.savePayloadFile("Nest/thermoList.xml",Dictionary[str,str](self.thermos),True)
             
@@ -72,7 +80,9 @@ class NestVC:
             vc.savePayloadFile("Nest/protectList.xml",Dictionary[str,str](self.prots),True)
                 
       
-    def getShared(self,device_id,var): #get certain types of thermostat info (e.g. temperature settings and current temp)
+    def getShared(self,device_id,var): #get certain types of thermostat info (e.g. temperature settings and 
+
+current temp)
         self.readNest()
         d = self.d
         var = var.replace(' ','_')
@@ -111,7 +121,9 @@ class NestVC:
             return "%0.1f" % temp+" Celsius" #return temp in C, rounded to one decimal place
                             
             
-    def getDeviceInfo(self,id,var): #get other environmental info such as current thermostat mode, home away status etc.
+    def getDeviceInfo(self,id,var): #get other environmental info such as current thermostat mode, home away 
+
+status etc.
     
         self.readNest()
         if not self.strucs:
@@ -153,7 +165,9 @@ class NestVC:
                 for key,val in self.prots.iteritems():#iterates through all protect units
                     res = d["topaz"][key][var]#retrieves battery healt for each protect unit
                     bats_state_list.append(val+": "+bat_health[res])#adds each unit name: bat_level to list.
-                vc.setResultList(List[str](bats_state_list))#returns {Match.#} list where {#M} is total num of Protects. Each match is: "name: level".
+                vc.setResultList(List[str](bats_state_list))#returns {Match.#} list where {#M} is total num of 
+
+Protects. Each match is: "name: level".
                 return
                 
             else:#checks level of specific unit (if you pass a protect id to the function)
