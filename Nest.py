@@ -30,9 +30,7 @@ class NestVC:
     
         now = round(time.clock())
         
-        if self.d=="" or now - self.t > 180:#If Nest data was last updated over 3 mins ago, will rescan online data. 
-
-Otherwise uses prev. data.
+        if self.d=="" or now - self.t > 180:#If Nest data was last updated over 3 mins ago, will rescan online data. Otherwise uses prev. data.
             vc.triggerEvent("nestUpdate",None)
             with open("Nest/Nest_dev_status.txt","r") as nest_data:
                 read_nest = nest_data.read()
@@ -80,9 +78,7 @@ Otherwise uses prev. data.
             vc.savePayloadFile("Nest/protectList.xml",Dictionary[str,str](self.prots),True)
                 
       
-    def getShared(self,device_id,var): #get certain types of thermostat info (e.g. temperature settings and 
-
-current temp)
+    def getShared(self,device_id,var): #get certain types of thermostat info (e.g. temperature settings and current temp)
         self.readNest()
         d = self.d
         var = var.replace(' ','_')
