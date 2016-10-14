@@ -20,7 +20,7 @@ class NestVC:
 
     def __init__(self):
         
-        self.d = ""
+        self.d = "" #device variable
         self.t = round(time.clock())
         self.thermos = {}
         self.prots = {}
