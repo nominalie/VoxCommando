@@ -20,7 +20,7 @@ class NestVC:
 
     def __init__(self):
         
-        self.d = "" #devices variable
+        self.d = "" #device data to be retrieved from Nest
         self.t = round(time.clock())
         self.thermos = {}
         self.prots = {}
