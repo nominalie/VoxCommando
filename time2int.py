@@ -30,9 +30,7 @@ def time2int(text_with_num):
 
         #if this word is a number & last word was not, then:
         elif not lastWordWasNum:
-            everything = everything + " "
-
-            everything = everything + units[word]
+            everything = everything + " " + units[word]
             lastWordWasNum = True
             lastNum = int(units[word])
            
