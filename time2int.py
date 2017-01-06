@@ -14,7 +14,7 @@ NOTE: The script expects a 12-hour clock ("7:30 pm" not "19:30").
 
 def time2int(text_with_num):
 
-    everything=''
+    everything=""
     units = {
         "zero":"0", "oh":"0","one":"1", "two":"2", "three":"3", "four":"4", "five":"5", "six":"6", "seven":"7", "eight":"8",
         "nine":"9", "ten":"10", "eleven":"11","twelve":"12","fifteen":"15","twenty":"20","thirty":"30","forty five":"45",
