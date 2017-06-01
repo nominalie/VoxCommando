@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<!--
+VC version 2.232 or later required.
+1. The files voxremote.html, styles.css, and vc-link.js must be placed in: yourVCfolder\plugins\TCP\html
+2. VC simple web server must be enabled in the TCP plugin settings.
+3. On your VC computer, access this page at: http://localhost:portnumber/html/voxremote.html
+4. If you're using a different networked device, change "localhost" to the local name or IP address of your VC computer.
+-->
+<head>
+<title>VC Local Remote</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+
+<!-- Styles -->
+<link rel="stylesheet" href="styles.css">
+
+<!-- Javascript -->
+<script src="vc-link.js"></script>
+	
+
+</head>
+
+<body>
+
+<div class="container">
+<h1>VC Local Remote</h1>
+
+	<div id="message"><p><!-- will become notification text --></p></div>
+  
+	<div id="switchBox">
+    <div align="center" data-type="horizontal">
+      <button id="/api/vc.on" class="ui-btn" onclick="getVCdata(this.getAttribute('id'),this.innerHTML)">VC On</button>
+      <button id="/api/vc.standby" class="ui-btn" onclick="getVCdata(this.getAttribute('id'),this.innerHTML)">VC Standby</button>
+      <button id="/api/vc.off" class="ui-btn" onclick="getVCdata(this.getAttribute('id'),this.innerHTML)">VC Off</button>
+    </div>
+	</div>
+	
+	<div data-role="main" class="ui-content">
+	
+	  <div id="volume_slider1" class="ui-field-contain">
+	  <a id="/api/Sound.GetVol" name="Master volume level" onclick="getVCdata(this.getAttribute('id'),this.getAttribute('name'))"><label for="master volume level">Master Volume (?)</label></a>
+	  <input id="Master volume level" data-show-value="true" value="" type="range" name="master volume" min="0" max="100"  onchange="setVal('/api/Sound.SetVol&&',this.value,this.getAttribute('id'))"></div>
+	  
+ 
+	<div class="ui-content">
+	  <div id="sub_left"><label for="living room">Living Rm</label>
+		<select name="living room" id="Living room light" onchange="execCom(this,this.getAttribute('id')+' > '+options[this.selectedIndex].text)">
+		<option value="/api/vc.tellvox&&Livingroom lights off">Off</option>
+		<option value="/api/vc.tellvox&&Livingroom lights on">On</option>
+		</select></div>
+
+	  <div id="sub_right"><label for="master bedroom">Master Bdrm</label>
+		<select name="master bedroom" id="Master bedroom light" onchange="execCom(this,this.getAttribute('id')+' > '+options[this.selectedIndex].text)">
+		<option value="/api/vc.tellvox&&Master bedroom lights off">Off</option>
+		<option value="/api/vc.tellvox&&Master bedroom lights on">On</option>
+		</select></div> 
+	</div>
+  
+	<!--You can change the phrases after 'vc.tellvox&&' to favourite/common commands in your own config -->
+	<div id="ui-dropdown" class="ui-content">
+		<select class="ui-dropdown" name="select-tellvox" id="select-tellvox" onchange="execCom(this,options[this.selectedIndex].text)">
+        <option value="null">Select macro</option>
+        <option value="/api/vc.tellvox&&Listen to music">Listen to music</option>
+		<option value="/api/vc.tellvox&&Show help">Show help</option>
+        <option value="/api/vc.tellvox&&Play playlist Hits">Play playlist Hits</option>
+        <option value="/api/vc.tellvox&&Red alert">Red alert</option>
+        <option value="/api/vc.tellvox&&Total system shutdown">Total system shutdown</option>
+		</select></div>
+	</div>
+</div>
+</body>
+
+</html>
